@@ -55,6 +55,8 @@ function task5() {
     console.log(endsLy(str));
 }
 
+
+/// Not complete ///
 function fibonacci(_num) {
     let val = 0;
     if (_num > 1) {
@@ -71,3 +73,4 @@ function task7()
     let number = parseInt(document.getElementById("task7Input").value);
     fibonacci(number);
 }
+//////////////////////
