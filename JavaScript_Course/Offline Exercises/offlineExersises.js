@@ -2,8 +2,6 @@ function doubleChar(_str) {
     let _doubleChar = "";
     for (let i = 0; i < _str.length; i++) {
         _doubleChar = _doubleChar + _str[i] + _str[i];
-
-
     }
     return _doubleChar;
 }
