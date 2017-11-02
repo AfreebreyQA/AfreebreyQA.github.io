@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Garage</title>
+
+    <script src="7.Garage.js" type="text/javascript"></script>
+
+</head>
+
+<body onload="init()">
+
+    <h1>Garage</h1>
+
+    <h3>Check In Car</h3>
+    <div id="checkInCar">
+        <div id="checkInExistingCar">
+            Car Number Plate:<br>
+            <select id="checkInPlateNumInput">
+                    
+            </select>
+            <br><input type="checkbox" id="checkInPlateFilterBox"><font size="2">Filter checked in cars</font>
+            <br> Faults <br>
+            <input type="number" id="checkInFaultNumInput"><br>
+            <input type="button" value="Check In" onclick="checkInCar()">
+        </div>
+        <br>
+
+        <div id="createNewCar">
+            <h5>Register new car</h5>
+            <div id="createNewCarForm">
+                Number Plate
+                <input type="text" id="createPlateNumInput"><br> Model
+                <input type="text" id="createModelInput"><br>
+                <input type="button" value="Submit" onclick="createNewCar()">
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <h3>Check Out Car</h3>
+    <div id="checkOutCar">
+        <select name="carList">
+            <option value="volvo">Volvo</option>
+            <option value="audu">Audi</option>
+            <option value="kia">Kia</option>
+        </select>
+        <input type="button" value="Check Out">
+    </div>
+    <br>
+
+    <h3>View Cars</h3>
+    <div id="ViewCar">
+        <select>
+            <option value="volvo">Volvo</option>
+            <option value="audu">Audi</option>
+            <option value="kia">Kia</option>
+        </select>
+
+        <input type="button" value="Show Info">
+    </div>
+    <div id="ViewcarOutput">
+
+    </div>
+    <br>
+
+    <h3>Calculate Bill</h3>
+    <div id="carBill">
+        <select>
+            <option value="volvo">Volvo</option>
+            <option value="audu">Audi</option>
+            <option value="kia">Kia</option>
+        </select>
+
+        <input type="button" value="Calculate">
+        <div id="carBillOutput">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
