@@ -1,6 +1,7 @@
 "use strict";
 
 let previousCars = [];
+let notCheckedInCars = [];
 let checkedInCars = [];
 
 function init() {
@@ -9,7 +10,9 @@ function init() {
         model: "Volvo",
         faultNum: 3
     }
+
     previousCars.push(car);
+    notCheckedInCars.push(car);
 
     let previousCarsDropDown = document.getElementById("checkInPlateNumInput");
     for (let i = 0; i < previousCars.length; i++) {
@@ -23,22 +26,41 @@ function init() {
 function updateCheckInDropDown() {
 
     let previousCarsDropDown = document.getElementById("checkInPlateNumInput");
+    let myCheckBox = document.getElementById("checkInPlateFilterBox").value;
 
     // Clears the select element
     while (previousCarsDropDown.hasChildNodes()) {
         previousCarsDropDown.removeChild(previousCarsDropDown.lastChild)
     }
 
-    // adds all available cars into select element
-    for (let i = 0; i < previousCars.length; i++) {
-        let option = document.createElement("option");
-        option.setAttribute("value", previousCars[i].plateNum);
-        option.innerHTML = previousCars[i].plateNum;
-        previousCarsDropDown.appendChild(option);
+    if (myCheckBox.value == "on") {
+        for (let car in notCheckedInCars) {
+            let option = document.createElement("option");
+            option.setAttribute("value", notCheckedInCars[car].plateNum);
+            option.innerHTML = notCheckedInCars[car].plateNum;
+            previousCarsDropDown.appendChild(option);
+        }
+    } else {
+        // adds all available cars into select element
+        for (let i = 0; i < previousCars.length; i++) {
+            let option = document.createElement("option");
+            option.setAttribute("value", previousCars[i].plateNum);
+            option.innerHTML = previousCars[i].plateNum;
+            previousCarsDropDown.appendChild(option);
+        }
     }
 }
 
-function checkIfInGarage(_plateNum) {
+function isCar(_plateNum) {
+    for (let car in previousCars) {
+        if (previousCars[car].plateNum == _plateNum) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isInGarage(_plateNum) {
     for (let i = 0; i < checkedInCars.length; i++) {
         if (checkedInCars[i].plateNum == _plateNum) {
             return true;
@@ -91,6 +113,7 @@ function createNewCar() {
     }
 
     // Adds car to previous cars
+    notCheckedInCars.push(newCar);
     previousCars.push(newCar);
     updateCheckInDropDown();
 
@@ -100,7 +123,6 @@ function createNewCar() {
             previousCarsDropDown.selectedIndex = i;
         }
     }
-    document.getElementById("checkInFaultNumInput").value = newCar.faultNum;
 
 }
 
@@ -111,56 +133,39 @@ function checkInCar() {
     let _faultNumInput = document.getElementById("checkInFaultNumInput");
 
     //reset input boxes to initial colour (May have been changed on previous input attempt)
-    //_plateNumInput.setAttribute("style", "background-color:initial");
     _faultNumInput.setAttribute("style", "background-color:initial");
 
     // variables to store user input
-    let _plateNum;
+    let _plateNum = _plateNumInput.options[_plateNumInput.selectedIndex].value;
     let _faultNum;
 
-    // validate inpute
-    let validInput = true;
-
-    // if (!(_plateNum = _plateNumInput.value)) {
-    //     _plateNumInput.setAttribute("style", "background-color:#ff9999");
-    //     validInput = false;
-    // }
     if (!(_faultNum = _faultNumInput.value)) {
         _faultNumInput.setAttribute("style", "background-color:#ff9999");
-        validInput = false;
         return; // remove if reverting back to manual typing to check in
     }
-    // if (!validInput) { return; }
-
-    // let carIndex;
-
-    // check if car is already registered
-    // let alreadyRegistered = false;
-    // for (let i = 0; i < previousCars.length; i++) {
-    //     if (previousCars[i].plateNum == _plateNum) {
-    //         carIndex = i;
-    //         alreadyRegistered = true;
-    //         break;
-    //     }
-    // }
-    // if (!alreadyRegistered) {
-    //     return;
-    // }
 
 
     // check if car is already checked in
-    let alreadyCheckedIn = false;
-    for (let i = 0; i < checkedInCars.length; i++) {
-        if (checkedInCars[i].plateNum == _plateNum) {
-            alreadyCheckedIn = true;
-            break;
-        }
-    }
-    if (alreadyCheckedIn) {
+    if (isInGarage(_plateNum)) {
+        alert("Car already checked in");
         return;
     }
 
     // check in car
+    let myCar;
+    for (let car in previousCars) {
+        if (previousCars[car].plateNum == _plateNum) {
+            myCar = previousCars[car];
+        }
+    }
 
+    checkedInCars.push(myCar);
 
+    let carIndex;
+    for(let car in notCheckedInCars){
+        if(notCheckedInCars[car].plateNum == myCar.plateNum){
+            carIndex = car;
+        }
+    }
+    notCheckedInCars.splice(carIndex,1);
 }
