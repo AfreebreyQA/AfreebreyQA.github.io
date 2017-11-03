@@ -18,13 +18,18 @@
     <h3>Check In Car</h3>
     <div id="checkInCar">
         <div id="checkInExistingCar">
-            Car Number Plate:<br>
+            Car Number Plate:
+            <br>
             <select id="checkInCarSelect">
-                    
+
             </select>
-            <br><input type="checkbox" id="checkInPlateFilterBox" onclick="updateUI()"><font size="2">Filter checked in cars</font>
-            <br> Faults <br>
-            <input type="number" id="checkInFaultNumInput"><br>
+            <br>
+            <input type="checkbox" id="checkInPlateFilterBox" onclick="updateUI()">
+            <font size="2">Filter checked in cars</font>
+            <br> Faults
+            <br>
+            <input type="number" id="checkInFaultNumInput">
+            <br>
             <input type="button" value="Check In" onclick="checkInCar()">
         </div>
         <br>
@@ -33,8 +38,10 @@
             <h5>Register new car</h5>
             <div id="createNewCarForm">
                 Number Plate
-                <input type="text" id="createPlateNumInput"><br> Model
-                <input type="text" id="createModelInput"><br>
+                <input type="text" id="createPlateNumInput">
+                <br> Model
+                <input type="text" id="createModelInput">
+                <br>
                 <input type="button" value="Submit" onclick="createNewCar()">
             </div>
         </div>
@@ -44,7 +51,7 @@
 
     <h3>Check Out Car</h3>
     <div id="checkOutCar">
-        <select name="garageCarList" id = "checkOutCarSelect">
+        <select name="garageCarList" id="checkOutCarSelect">
             <option value="volvo">Volvo</option>
             <option value="audu">Audi</option>
             <option value="kia">Kia</option>
@@ -55,7 +62,7 @@
 
     <h3>View Cars</h3>
     <div id="ViewCar">
-        <select name = "garageCarList" id = "viewCarSelect">
+        <select name="garageCarList" id="viewCarSelect">
             <option value="volvo">Volvo</option>
             <option value="audu">Audi</option>
             <option value="kia">Kia</option>
@@ -70,16 +77,20 @@
 
     <h3>Calculate Bill</h3>
     <div id="carBill">
-        <select name = "garageCarList" id = "billCarSelect"></select>
+        <select name="garageCarList" id="billCarSelect"></select>
         </select>
 
         <input type="button" value="Calculate" onclick="showBill()">
         <div id="carBillOutputDiv">
-            <br>   
+            <br>
 
         </div>
     </div>
 
+    <br>
+    <div class="subheading mb-3">
+        <a href="../../../index.html#exercises">Return</a>
+    </div>
 </body>
 
 </html>
