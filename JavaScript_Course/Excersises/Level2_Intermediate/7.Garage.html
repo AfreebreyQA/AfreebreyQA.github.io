@@ -18,10 +18,10 @@
     <div id="checkInCar">
         <div id="checkInExistingCar">
             Car Number Plate:<br>
-            <select id="checkInPlateNumInput">
+            <select id="checkInCarSelect">
                     
             </select>
-            <br><input type="checkbox" id="checkInPlateFilterBox" onclick="updateCheckInDropDown()"><font size="2">Filter checked in cars</font>
+            <br><input type="checkbox" id="checkInPlateFilterBox" onclick="updateUI()"><font size="2">Filter checked in cars</font>
             <br> Faults <br>
             <input type="number" id="checkInFaultNumInput"><br>
             <input type="button" value="Check In" onclick="checkInCar()">
@@ -43,40 +43,38 @@
 
     <h3>Check Out Car</h3>
     <div id="checkOutCar">
-        <select name="carList">
+        <select name="garageCarList" id = "checkOutCarSelect">
             <option value="volvo">Volvo</option>
             <option value="audu">Audi</option>
             <option value="kia">Kia</option>
         </select>
-        <input type="button" value="Check Out">
+        <input type="button" value="Check Out" onclick="checkOutCar()">
     </div>
     <br>
 
     <h3>View Cars</h3>
     <div id="ViewCar">
-        <select>
+        <select name = "garageCarList" id = "viewCarSelect">
             <option value="volvo">Volvo</option>
             <option value="audu">Audi</option>
             <option value="kia">Kia</option>
         </select>
 
-        <input type="button" value="Show Info">
+        <input type="button" value="Show Info" onclick="displayCarInfo()">
     </div>
-    <div id="ViewcarOutput">
+    <div id="viewCarOutputDiv">
 
     </div>
     <br>
 
     <h3>Calculate Bill</h3>
     <div id="carBill">
-        <select>
-            <option value="volvo">Volvo</option>
-            <option value="audu">Audi</option>
-            <option value="kia">Kia</option>
+        <select name = "garageCarList" id = "billCarSelect"></select>
         </select>
 
-        <input type="button" value="Calculate">
-        <div id="carBillOutput">
+        <input type="button" value="Calculate" onclick="showBill()">
+        <div id="carBillOutputDiv">
+            <br>   
 
         </div>
     </div>
